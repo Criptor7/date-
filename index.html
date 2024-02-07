@@ -19,6 +19,7 @@
             overflow: hidden;
             background-color: #fff;
             color: #e91e63;
+            position: relative;
         }
 
         #question {
@@ -65,6 +66,16 @@
             display: none;
         }
 
+        #heartbeat {
+            position: absolute;
+            top: 50px; /* Adjusted position */
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 30px;
+            color: #e91e63;
+            animation: heartbeat 2s linear infinite alternate; /* Infinite alternate for continuous heartbeat */
+        }
+
         @keyframes catEnter {
             from {
                 transform: translateY(100vh);
@@ -79,11 +90,19 @@
                 transform: translateX(-100vw);
             }
         }
+
+        @keyframes heartbeat {
+            to {
+                color: #fff;
+            }
+        }
     </style>
 </head>
 <body>
 
-    <div id="question">Will you be my valentine?</div>
+    <div id="heartbeat">♥</div>
+
+    <div id="question">Would you like to go on a date with me?</div>
 
     <div id="buttons">
         <button id="yes" onclick="handleYes()">Yes!</button>
@@ -91,14 +110,20 @@
     </div>
 
     <div id="cat-container">
-        <img src="./date-invitation/images/happy-cat-happy-happy-cat.gif" alt="Happi Happi Happi Cat" width="200">
+        <img src="./happy-cat-happy-happy-cat.gif" alt="Happi Happi Happi Cat" width="200">
     </div>
 
     <script>
+        // Initially start the heartbeat animation
+        document.addEventListener("DOMContentLoaded", function () {
+            document.getElementById("heartbeat").style.animationPlayState = "running";
+        });
+
         function handleYes() {
             document.body.style.backgroundColor = "#e91e63";
             document.getElementById("question").style.color = "#fff";
             document.getElementById("cat-container").style.display = "block";
+            document.getElementById("heartbeat").style.color = "#fff";
         }
 
         function handleNo() {
