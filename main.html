@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Date Invitation</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap">
+    <style>
+        body {
+            font-family: 'Indie Flower', cursive;
+            text-align: center;
+            transition: background-color 2s ease-in-out, color 2s ease-in-out;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            overflow: hidden;
+            background-color: #fff;
+            color: #e91e63;
+        }
+
+        #question {
+            font-size: 28px;
+            margin-bottom: 20px;
+            transition: color 2s ease-in-out;
+        }
+
+        #buttons {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        #yes, #no {
+            padding: 10px 20px;
+            font-size: 18px;
+            cursor: pointer;
+            margin: 0 10px;
+            border: 2px solid #e91e63;
+            border-radius: 25px;
+            background-color: #fff;
+            color: #e91e63;
+            transition: background-color 0.3s, color 0.3s, transform 0.5s ease-in-out;
+        }
+
+        #yes:hover, #no:hover {
+            background-color: #e91e63;
+            color: #fff;
+            transform: scale(1.5); /* Increase size by half */
+        }
+
+        #no.clicked {
+            animation: moveAway 1s linear forwards;
+        }
+
+        #cat-container {
+            position: fixed;
+            bottom: 10vh; /* Adjusted position */
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 200;
+            animation: catEnter 2s ease-in-out;
+            display: none;
+        }
+
+        @keyframes catEnter {
+            from {
+                transform: translateY(100vh);
+            }
+            to {
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes moveAway {
+            to {
+                transform: translateX(-100vw);
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div id="question">Would you like to go on a date with me?</div>
+
+    <div id="buttons">
+        <button id="yes" onclick="handleYes()">Yes!</button>
+        <button id="no" onclick="handleNo()">No</button>
+    </div>
+
+    <div id="cat-container">
+        <img src="/happy-cat-happy-happy-cat.gif" alt="Happi Happi Happi Cat" width="200">
+    </div>
+
+    <script>
+        function handleYes() {
+            document.body.style.backgroundColor = "#e91e63";
+            document.getElementById("question").style.color = "#fff";
+            document.getElementById("cat-container").style.display = "block";
+        }
+
+        function handleNo() {
+            const noButton = document.getElementById("no");
+            noButton.classList.add("clicked");
+            noButton.style.pointerEvents = "none"; // Disable further clicks
+        }
+    </script>
+
+</body>
+</html>
